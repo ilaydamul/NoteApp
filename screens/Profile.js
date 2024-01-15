@@ -1,10 +1,10 @@
 import { Text, View } from 'react-native';
 
-export default function Register() {
+export default function Profile() {
   return (
     <View>
       <Text>
-        Register
+      Profile
       </Text>
     </View>
   )
