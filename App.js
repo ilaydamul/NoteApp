@@ -1,9 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import NotesContextProvider from './store/context/notes-context';
+import NotesContextProvider from './store/notes-context';
 
 // SCREENS
 import Home from './screens/Home';

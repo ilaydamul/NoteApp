@@ -1,19 +1,10 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import Title from '../../components/Title';
-import Input from '../../components/Input';
 import Link from '../../components/Link';
 import { useNavigation } from '@react-navigation/native';
 import AuthForm from './AuthForm';
-import { useState } from 'react';
 
-
-export default function AuthContent({ isLogin }) {
-    const [credentialsInvalid, setCredentialsInvalid] = useState({
-        email: false,
-        password: false,
-        confirmPassword: false,
-    });
-
+export default function AuthContent({ isLogin, onAuthenticate }) {
     const navigation = useNavigation();
     function switchAuthPage() {
         if (isLogin) {
@@ -23,19 +14,14 @@ export default function AuthContent({ isLogin }) {
         }
     }
 
-    function submitHandler(credentials) {
-        let { email, password, confirmPassword } = credentials;
-        console.log(email);
-        console.log(password);
-        console.log(confirmPassword);
+    function submitHandler(formData) {
+        onAuthenticate(formData);
     }
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 50 }}>
             <Title textcenter>{isLogin ? "Giriş Yap" : "Kayıt Ol"}</Title>
-            <AuthForm isLogin={isLogin} onSubmit={submitHandler} credentialsInvalid={credentialsInvalid}/>
-            {/* <Input placeholder="Adınız" />
-            <Input placeholder="Şifreniz" /> */}
+            <AuthForm isLogin={isLogin} onSubmit={submitHandler}/>
             <Link onPress={switchAuthPage}>{isLogin ? "Hesabınız mı yok? Kayıt olun." : "Giriş Yap"}</Link>
         </View>
     )
