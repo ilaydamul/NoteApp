@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NotesContextProvider from './store/notes-context';
+import { checkLoginStatus } from './util/firebase';
 
 // SCREENS
 import Home from './screens/Home';
@@ -10,7 +11,7 @@ import Login from './screens/auth/Login';
 import Register from './screens/auth/Register';
 import Profile from './screens/Profile';
 import AuthContextProvider from './store/auth-context';
-
+import { useEffect, useState } from 'react';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,41 +51,29 @@ function AuthNav() {
   );
 }
 
+
+function Root() {
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const fetchLoginStatus = async () => {
+      const status = await checkLoginStatus();
+      setIsLogin(status);
+    }
+    console.log("App: " + isLogin);
+    fetchLoginStatus();
+  }, [isLogin])
+
+
+  return isLogin ? <HomeNav /> : <AuthNav />
+}
+
 export default function App() {
-  const isAuth = false;
-  var navComponent;
-
-  if (isAuth) {
-    navComponent = <HomeNav />
-  } else {
-    navComponent = <AuthNav />
-  }
-
-
   return (
     <AuthContextProvider>
       <NotesContextProvider>
         <NavigationContainer>
-          {navComponent}
-          {/* <Stack.Navigator initialRouteName="Home" screenOptions={{
-          headerStyle: {
-            backgroundColor: "#222831"
-          },
-          headerTintColor: "#EEEEEE",
-          headerTitleStyle: {
-            fontWeight: "bold"
-          }
-        }}> */}
-          {/* <Stack.Screen name="Login" component={Login} options={{ title: 'Giriş Yap' }} initialParams={{ itemId: 42 }} />
-          <Stack.Screen name="Register" component={Register} options={{ title: 'Kayıt Ol' }} /> */}
-
-          {/* <Stack.Screen name="Home" component={HomeNav} options={{ headerShown: false }} /> */}
-          {/* <Stack.Screen name="Home" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} /> */}
-
-          {/* <Stack.Screen name="Profile" component={Profile} options={({ route }) => ({
-          title: route.params.name,
-        })} /> */}
-          {/* </Stack.Navigator> */}
+          <Root />
         </NavigationContainer>
       </NotesContextProvider>
     </AuthContextProvider>
