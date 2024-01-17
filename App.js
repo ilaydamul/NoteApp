@@ -9,6 +9,7 @@ import Home from './screens/Home';
 import Login from './screens/auth/Login';
 import Register from './screens/auth/Register';
 import Profile from './screens/Profile';
+import AuthContextProvider from './store/auth-context';
 
 
 const Stack = createNativeStackNavigator();
@@ -61,10 +62,11 @@ export default function App() {
 
 
   return (
-    <NotesContextProvider>
-      <NavigationContainer>
-        {navComponent}
-        {/* <Stack.Navigator initialRouteName="Home" screenOptions={{
+    <AuthContextProvider>
+      <NotesContextProvider>
+        <NavigationContainer>
+          {navComponent}
+          {/* <Stack.Navigator initialRouteName="Home" screenOptions={{
           headerStyle: {
             backgroundColor: "#222831"
           },
@@ -73,19 +75,19 @@ export default function App() {
             fontWeight: "bold"
           }
         }}> */}
-        {/* <Stack.Screen name="Login" component={Login} options={{ title: 'Giriş Yap' }} initialParams={{ itemId: 42 }} />
+          {/* <Stack.Screen name="Login" component={Login} options={{ title: 'Giriş Yap' }} initialParams={{ itemId: 42 }} />
           <Stack.Screen name="Register" component={Register} options={{ title: 'Kayıt Ol' }} /> */}
 
-        {/* <Stack.Screen name="Home" component={HomeNav} options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen name="Home" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} /> */}
+          {/* <Stack.Screen name="Home" component={HomeNav} options={{ headerShown: false }} /> */}
+          {/* <Stack.Screen name="Home" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} /> */}
 
-        {/* <Stack.Screen name="Profile" component={Profile} options={({ route }) => ({
+          {/* <Stack.Screen name="Profile" component={Profile} options={({ route }) => ({
           title: route.params.name,
         })} /> */}
-        {/* </Stack.Navigator> */}
-      </NavigationContainer>
-    </NotesContextProvider>
-
+          {/* </Stack.Navigator> */}
+        </NavigationContainer>
+      </NotesContextProvider>
+    </AuthContextProvider>
   );
 }
 
