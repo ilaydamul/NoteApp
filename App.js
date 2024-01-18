@@ -1,4 +1,4 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { DarkTheme, NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NotesContextProvider from './store/notes-context';
@@ -13,17 +13,38 @@ import { useContext } from 'react';
 import { Pressable, Text } from 'react-native';
 import Button from './components/Button';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
-import Nots from './screens/Notes';
+import Notes from './screens/Notes';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function HomeNav() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Nots" component={Nots} options={{title: "Notlarım"}}/>
-      <Tab.Screen name="Home" component={Home} options={{title: "Anasayfa"}} />
-      <Tab.Screen name="Profile" component={Profile} options={{title: "Profil"}}/>
+    <Tab.Navigator screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+        if (route.name === 'Home') {
+          iconName = focused
+            ? 'home'
+            : 'home-outline';
+        } else if (route.name === 'Profile') {
+          iconName = focused ? 'person' : 'person-outline';
+        } else if (route.name === 'Notes') {
+          iconName = focused ? 'ios-list' : 'ios-list-outline';
+        }
+
+        // You can return any component that you like here!
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: '#00ADB5',
+      tabBarInactiveTintColor: '#393E46',
+    })}>
+
+      <Tab.Screen name="Home" component={Home} options={{ title: "Anasayfa" }} />
+      <Tab.Screen name="Notes" component={Notes} options={{ title: "Notlarım" }} />
+      <Tab.Screen name="Profile" component={Profile} options={{ title: "Profil" }} />
     </Tab.Navigator>
   )
 }
@@ -53,12 +74,15 @@ function Root() {
 
 export default function App() {
   return (
-    <AuthContextProvider>
-      <NotesContextProvider>
-        <NavigationContainer>
-          <Root />
-        </NavigationContainer>
-      </NotesContextProvider>
-    </AuthContextProvider>
+    <SafeAreaView style={{ flex: 1 }}>
+      <AuthContextProvider>
+        <NotesContextProvider>
+          <NavigationContainer>
+            <Root />
+          </NavigationContainer>
+        </NotesContextProvider>
+      </AuthContextProvider>
+      <StatusBar style='auto' />
+    </SafeAreaView>
   );
 }

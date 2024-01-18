@@ -1,17 +1,19 @@
-import { Text, View } from 'react-native';
-import Button from '../components/Button';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { FlatList, Text, View } from 'react-native';
 import { NotesContext } from '../store/notes-context';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import NoteItem from '../components/NoteItem';
+import { globalStyles } from '../styles';
 
 export default function Notes() {
     const notes = useContext(NotesContext);
+    const [notesData, setNotesData] = useState();
 
     useEffect(() => {
         const fetchNotes = async () => {
             try {
                 const response = await notes.allNotes();
-                console.log(response.data);
+                var items = await response.json();
+                setNotesData(items);
 
             } catch (error) {
                 console.log(error);
@@ -22,10 +24,8 @@ export default function Notes() {
     }, [NotesContext])
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>
-                Nots
-            </Text>
+        <View style={{ ...globalStyles.container }}>
+            <FlatList data={notesData} renderItem={({ item }) => <NoteItem item={item} keyExtractor={(item) => item.id.toString()} />} />
         </View>
     )
 }

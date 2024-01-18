@@ -11,16 +11,22 @@ const firebaseConfig = {
   appId: "1:372845559931:web:5768a448db4a8be63ce2de"
 };
 
-const app = initializeApp(firebaseConfig);
-var auth, isLogin = false;
+// const app = initializeApp(firebaseConfig);
 
-if (!getAuth().app) {
-  auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
-  });
-} else {
-  auth = getAuth();
-}
+// if (!getAuth().app) {
+//   auth = initializeAuth(app, {
+//     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+//   });
+// } else {
+//   auth = getAuth();
+// }
+
+// initialize Firebase App
+const app = initializeApp(firebaseConfig);
+// initialize Firebase Auth for that app immediately
+var auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+});
 
 // const loginStatusPromise = new Promise((resolve) => {
 //   onAuthStateChanged(auth, (user) => {
