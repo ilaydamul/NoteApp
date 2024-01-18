@@ -1,4 +1,6 @@
-import { Button, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import Button from '../components/Button';
+import { Ionicons,FontAwesome5 } from '@expo/vector-icons';
 
 export default function Home({navigation}) {
   return (
@@ -6,8 +8,6 @@ export default function Home({navigation}) {
       <Text>
         Home
       </Text>
-      <Button title='Giriş Yap' onPress={()=>{navigation.navigate("Login",{itemId:1,text:'Item Numarası 1'})}}/>
-      {/* <Button title='Profil' onPress={()=>{navigation.navigate("Profile",{name:"Profil Sayfası"})}}/> */}
     </View>
   )
 }

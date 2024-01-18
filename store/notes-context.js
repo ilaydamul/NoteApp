@@ -4,6 +4,7 @@ export const NotesContext = createContext({
     ids: [],
     addNote: (id) => { },
     removeNote: (id) => { },
+    allNotes: [],
 })
 
 export default function NotesContextProvider({ children }) {
@@ -17,10 +18,15 @@ export default function NotesContextProvider({ children }) {
         setNoteIds((currentNote) => currentNote.filter((noteId) => noteId != id));
     }
 
+    async function getNotes() {
+        return await fetch('https://jsonplaceholder.typicode.com/todos');
+    }
+
     const value = {
         ids: noteIds,
         addNote: addNote,
-        removeNote: removeNote
+        removeNote: removeNote,
+        allNotes: getNotes
     }
 
     return <NotesContext.Provider value={value}>{children}</NotesContext.Provider>

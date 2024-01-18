@@ -1,14 +1,23 @@
+import { useContext } from 'react';
 import AuthContent from '../../components/auth/AuthContent';
+import { AuthContext } from '../../store/auth-context';
 import { signin } from '../../util/firebase';
 
 
-export default function Login({navigation}) {
-  function loginHandler(datas) {
-    const email=datas.email;
-    const password=datas.password;
+export default function Login({ navigation }) {
+  const authCtx = useContext(AuthContext);
 
-    signin(email,password);
-    // navigation.navigate("Home");
+  function loginHandler(datas) {
+    const email = datas.email;
+    const password = datas.password;
+
+    try {
+      signin(email, password);
+      authCtx.authenticate(true);
+      
+    } catch (error) {
+      console.log(error);
+    }
 
   }
 

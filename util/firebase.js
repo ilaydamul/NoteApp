@@ -22,27 +22,23 @@ if (!getAuth().app) {
   auth = getAuth();
 }
 
-const loginStatusPromise=new Promise((resolve)=>{
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("Oturum açılmış: " + user.email);
-      isLogin = true;
-    }
-    else {
-      console.log("Oturum açılmamış.");
-      isLogin = false;
-    }
+// const loginStatusPromise = new Promise((resolve) => {
+//   onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//       console.log("Oturum açılmış: " + user.email);
+//       isLogin = true;
+//     }
+//     else {
+//       console.log("Oturum açılmamış.");
+//       isLogin = false;
+//     }
 
-    console.log("Firebase: "+isLogin);
-    resolve(isLogin);
-  })
-  
-})
+//     console.log("Firebase: " + isLogin);
+//     resolve(isLogin);
+//   })
 
-export async function checkLoginStatus() {
-  // console.log(isLogin);
-  return await loginStatusPromise;
-}
+// })
+
 
 export async function signup(email, password) {
   try {

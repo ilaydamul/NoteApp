@@ -1,35 +1,29 @@
-import { StyleSheet, Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NotesContextProvider from './store/notes-context';
-import { checkLoginStatus } from './util/firebase';
 
 // SCREENS
 import Home from './screens/Home';
 import Login from './screens/auth/Login';
 import Register from './screens/auth/Register';
 import Profile from './screens/Profile';
-import AuthContextProvider from './store/auth-context';
-import { useEffect, useState } from 'react';
+import AuthContextProvider, { AuthContext } from './store/auth-context';
+import { useContext } from 'react';
+import { Pressable, Text } from 'react-native';
+import Button from './components/Button';
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import Nots from './screens/Notes';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function LogoTitle() {
-  return (
-    <Image
-      style={{ width: 50, height: 50 }}
-      source={require('./assets/icon.png')}
-    />
-  );
-}
-
 function HomeNav() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="HomePage" component={Home} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Nots" component={Nots} options={{title: "Notlarım"}}/>
+      <Tab.Screen name="Home" component={Home} options={{title: "Anasayfa"}} />
+      <Tab.Screen name="Profile" component={Profile} options={{title: "Profil"}}/>
     </Tab.Navigator>
   )
 }
@@ -51,21 +45,10 @@ function AuthNav() {
   );
 }
 
-
 function Root() {
-  const [isLogin, setIsLogin] = useState(false);
-
-  useEffect(() => {
-    const fetchLoginStatus = async () => {
-      const status = await checkLoginStatus();
-      setIsLogin(status);
-    }
-    console.log("App: " + isLogin);
-    fetchLoginStatus();
-  }, [isLogin])
-
-
-  return isLogin ? <HomeNav /> : <AuthNav />
+  const authCtx = useContext(AuthContext);
+  var a = true;
+  return a ? <HomeNav /> : <AuthNav />
 }
 
 export default function App() {
@@ -79,12 +62,3 @@ export default function App() {
     </AuthContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
