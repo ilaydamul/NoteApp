@@ -40,6 +40,7 @@ function HomeNav() {
       },
       tabBarActiveTintColor: '#00ADB5',
       tabBarInactiveTintColor: '#393E46',
+      headerShown:false
     })}>
 
       <Tab.Screen name="Home" component={Home} options={{ title: "Anasayfa" }} />

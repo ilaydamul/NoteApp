@@ -30,7 +30,9 @@ export default function Home({ navigation }) {
   return (
     <View style={{ ...globalStyles.container }}>
       <Title>İlk 10 Not</Title>
-      <FlatList data={notesData} style={{height:60}} renderItem={({ item }) => <NoteItem2 item={item} />} />
+      <View style={{height:180}}>
+        <FlatList data={notesData} renderItem={({ item }) => <NoteItem2 item={item} keyExtractor={(item) => item.id.toString()+"1"} />} />
+      </View>
     </View>
   )
 }

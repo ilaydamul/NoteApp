@@ -3,7 +3,7 @@ import { Text, StyleSheet, View } from 'react-native';
 export default function NoteItem({ item }) {
     
     return (
-        <View style={[style.item]}>
+        <View style={[style.item, { backgroundColor: item.completed ? 'red' : 'green' }]}>
             <Text style={style.itemTitle}>{item.title}</Text>
         </View>
     )

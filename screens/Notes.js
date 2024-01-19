@@ -3,6 +3,7 @@ import { NotesContext } from '../store/notes-context';
 import { useContext, useEffect, useState } from 'react';
 import NoteItem from '../components/NoteItem';
 import { globalStyles } from '../styles';
+import Title from '../components/Title';
 
 export default function Notes() {
     const notes = useContext(NotesContext);
@@ -25,6 +26,7 @@ export default function Notes() {
 
     return (
         <View style={{ ...globalStyles.container }}>
+            <Title>Notlarım</Title>
             <FlatList data={notesData} renderItem={({ item }) => <NoteItem item={item} keyExtractor={(item) => item.id.toString()} />} />
         </View>
     )
