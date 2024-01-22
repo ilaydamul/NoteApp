@@ -11,7 +11,7 @@ import Profile from './screens/Profile';
 import AuthContextProvider, { AuthContext } from './store/auth-context';
 import { useContext } from 'react';
 import { Pressable, Text } from 'react-native';
-import Button from './components/Button';
+import Button from './components/ButtonStyle';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import Notes from './screens/Notes';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -69,8 +69,8 @@ function AuthNav() {
 
 function Root() {
   const authCtx = useContext(AuthContext);
-  var a = true;
-  return a ? <HomeNav /> : <AuthNav />
+  // var a = true;
+  return authCtx.isAuthenticated ? <AuthNav /> : <HomeNav />
 }
 
 export default function App() {

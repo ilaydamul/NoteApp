@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import Button from "../Button";
+import Button from "../ButtonStyle";
 
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';

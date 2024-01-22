@@ -4,7 +4,7 @@ import { AuthContext } from '../../store/auth-context';
 import { signin } from '../../util/firebase';
 
 
-export default function Login({ navigation }) {
+export default function Login() {
   const authCtx = useContext(AuthContext);
 
   function loginHandler(datas) {

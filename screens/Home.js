@@ -1,5 +1,5 @@
 import { FlatList, Text, View } from 'react-native';
-import Button from '../components/Button';
+import Button from '../components/ButtonStyle';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import Title from '../components/Title';
 import { globalStyles } from '../styles';
