@@ -5,21 +5,21 @@ export const AuthContext = createContext({
     token: "",
     isAuthenticated: false,
     authenticate: (token) => { },
-    logout: () => { }
+    logout: () => { },
+    errorHandler: () => { },
+    errorText: "",
 })
 
 export default function AuthContextProvider({ children }) {
     const [authToken, setAuthToken] = useState();
+    const [errorText1, setErrorText1] = useState("");
 
     function authenticate(token) {
         setAuthToken(token);
-        console.log(token);
-        // AsyncStorage.setItem("token", token);
     }
 
     function logout() {
         setAuthToken(null);
-        // AsyncStorage.removeItem("token");
     }
 
     const value = {
@@ -27,7 +27,13 @@ export default function AuthContextProvider({ children }) {
         isAuthenticated: !!authToken,
         authenticate: authenticate,
         logout: logout,
+        errorText: errorText1,
+        errorHandler: errorHandler
     };
+
+    function errorHandler(text) {
+        setErrorText1(text);
+    }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

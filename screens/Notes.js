@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { NotesContext } from '../store/notes-context';
 import { useContext, useEffect, useState } from 'react';
 import NoteItem from '../components/NoteItem';
@@ -24,10 +24,14 @@ export default function Notes() {
         fetchNotes();
     }, [NotesContext])
 
+
+
     return (
         <View style={{ ...globalStyles.container }}>
             <Title>Notlarım</Title>
-            <FlatList data={notesData} renderItem={({ item }) => <NoteItem item={item} keyExtractor={(item) => item.id.toString()} />} />
+            {notesData ? <FlatList data={notesData} renderItem={({ item }) => <NoteItem item={item} keyExtractor={(item) => item.id.toString()} />} /> : <ActivityIndicator size="small" />}
+
+
         </View>
     )
 }

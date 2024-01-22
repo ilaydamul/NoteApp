@@ -1,6 +1,4 @@
-import { FlatList, Text, View } from 'react-native';
-import Button from '../components/ButtonStyle';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { ActivityIndicator, FlatList, View } from 'react-native';
 import Title from '../components/Title';
 import { globalStyles } from '../styles';
 import { useContext, useEffect, useState } from 'react';
@@ -30,9 +28,10 @@ export default function Home({ navigation }) {
   return (
     <View style={{ ...globalStyles.container }}>
       <Title>İlk 10 Not</Title>
-      <View style={{height:180}}>
-        <FlatList data={notesData} renderItem={({ item }) => <NoteItem2 item={item} keyExtractor={(item) => item.id.toString()+"1"} />} />
+      <View style={{ height: 180 }}>
+        {notesData ? <FlatList data={notesData} renderItem={({ item }) => <NoteItem2 item={item} keyExtractor={(item) => item.id.toString() + "1"} />} /> : <ActivityIndicator size='small' />}
       </View>
+
     </View>
   )
 }

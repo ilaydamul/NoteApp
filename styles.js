@@ -5,5 +5,9 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 12,
         paddingTop: 16
+    },
+    errorTxt:{
+        color:"red",
+        marginBottom:10
     }
 })

@@ -70,7 +70,7 @@ function AuthNav() {
 function Root() {
   const authCtx = useContext(AuthContext);
   // var a = true;
-  return authCtx.isAuthenticated ? <AuthNav /> : <HomeNav />
+  return authCtx.isAuthenticated ? <HomeNav /> : <AuthNav />
 }
 
 export default function App() {

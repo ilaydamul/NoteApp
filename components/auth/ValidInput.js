@@ -2,6 +2,7 @@ import { View, Text } from 'react-native';
 import Input from '../Input';
 
 import { Controller } from 'react-hook-form';
+import { globalStyles } from '../../styles';
 
 export default function ValidInput({ inputName, placeholder, control, errors, label }) {
     return (
@@ -22,7 +23,9 @@ export default function ValidInput({ inputName, placeholder, control, errors, la
                 name={inputName}
             />
 
-            {errors[inputName] && (<Text style={{ marginBottom: 6 }}>{errors[inputName].message}</Text>)}
+            {errors[inputName] && (<Text style={{ ...globalStyles.errorTxt, marginBottom: 6 }}>{errors[inputName].message}</Text>)}
         </>
     )
 }
+
+
