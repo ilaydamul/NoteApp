@@ -14,8 +14,6 @@ import ButtonStyle from "../ButtonStyle";
 export default function AuthForm({ isLogin, onSubmit }) {
     const authCtx = useContext(AuthContext);
 
-
-
     const schema = yup.object().shape({
         email: yup
             .string()

@@ -8,6 +8,7 @@ import Home from './screens/Home';
 import Login from './screens/auth/Login';
 import Register from './screens/auth/Register';
 import Profile from './screens/Profile';
+import Animation from './screens/Animation';
 import AuthContextProvider, { AuthContext } from './store/auth-context';
 import { useContext } from 'react';
 import { Pressable, Text } from 'react-native';
@@ -43,6 +44,7 @@ function HomeNav() {
       headerShown:false
     })}>
 
+      <Tab.Screen name="Animation" component={Animation} options={{ title: "Animasyon" }} />
       <Tab.Screen name="Home" component={Home} options={{ title: "Anasayfa" }} />
       <Tab.Screen name="Notes" component={Notes} options={{ title: "Notlarım" }} />
       <Tab.Screen name="Profile" component={Profile} options={{ title: "Profil" }} />
@@ -70,7 +72,7 @@ function AuthNav() {
 function Root() {
   const authCtx = useContext(AuthContext);
   // var a = true;
-  return authCtx.isAuthenticated ? <HomeNav /> : <AuthNav />
+  return authCtx.isAuthenticated ? <AuthNav /> : <HomeNav />
 }
 
 export default function App() {
