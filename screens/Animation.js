@@ -1,48 +1,46 @@
-import { View, StyleSheet, Button } from 'react-native';
-import { globalStyles } from '../styles';
-import Title from '../components/Title';
+import React, { Component } from 'react';
+import {
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native';
+
+import Slick from 'react-native-slick';
+import MainSlider from '../components/MainSlider';
+
+var styles = StyleSheet.create({
+    wrapper: {
+    },
+    slide1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB',
+    },
+    slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5',
+    },
+    slide3: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92BBD9',
+    },
+    text: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold',
+    }
+})
 
 export default function Animation() {
-    const animation = useRef(null);
-    useEffect(() => {
-        // You can control the ref programmatically, rather than using autoPlay
-        // animation.current?.play();
-    }, []);
-
     return (
-        <View style={styles.animationContainer}>
-            <LottieView
-                autoPlay
-                ref={animation}
-                style={{
-                    width: 200,
-                    height: 200,
-                    backgroundColor: '#eee',
-                }}
-                // Find more Lottie files at https://lottiefiles.com/featured
-                source={require('./assets/gradientBall.json')}
-            />
-            <View style={styles.buttonContainer}>
-                <Button
-                    title="Restart Animation"
-                    onPress={() => {
-                        animation.current?.reset();
-                        animation.current?.play();
-                    }}
-                />
-            </View>
+        <View style={{ height: "50%" }}>
+            <MainSlider />
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    animationContainer: {
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-    },
-    buttonContainer: {
-        paddingTop: 20,
-    },
-});
