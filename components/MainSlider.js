@@ -42,7 +42,7 @@ var styles = StyleSheet.create({
 
 export default function MainSlider() {
     return (
-        <Slick style={styles.wrapper} showsButtons={false} paginationStyle={{ display: 'none' }}>
+        <Slick style={styles.wrapper} showsButtons={false} paginationStyle={{ display: 'none' }} slideToShow="2" >
             <View style={[styles.slideItem, styles.slide1]}>
                 <Image style={styles.image} source={require("../assets/img/slide1.webp")} />
             </View>
