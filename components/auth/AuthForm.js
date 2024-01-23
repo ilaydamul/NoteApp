@@ -17,12 +17,12 @@ export default function AuthForm({ isLogin, onSubmit }) {
     const schema = yup.object().shape({
         email: yup
             .string()
-            .required('Bu alan zorunludur!'),
-        // .email('Geçersiz e-mail.'),
+            .required('Bu alan zorunludur!')
+            .email('Geçersiz e-mail.'),
         password: yup
             .string()
-            .required('Bu alan zorunludur!'),
-        // .min(8, 'Şifre en az 8 karakter olmalı'),
+            .required('Bu alan zorunludur!')
+            .min(8, 'Şifre en az 8 karakter olmalı'),
         confirmpassword: isLogin ? undefined : yup.string().required('Bu alan zorunludur!')
     });
 

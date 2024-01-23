@@ -1,10 +1,10 @@
 import { Text, StyleSheet } from 'react-native';
 
-export default function Title({ children, textcenter }) {
+export default function Title({ children, textcenter, customStyle }) {
     return (
-        <Text style={{ ...(style || {}), textAlign: textcenter ? "center" : "left" }}>
+        <Text style={{ ...(style || {}), textAlign: textcenter ? "center" : "left", ...(customStyle || "") }}>
             {children}
-        </Text>
+        </Text >
     )
 }
 

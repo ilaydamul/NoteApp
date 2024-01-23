@@ -7,12 +7,19 @@ export default function CategorySlider() {
     return (
         <View style={{ height:200 }}>
             <Carousel
-                loop
+                // loop
                 width={width}
+                defaultIndex={2}
                 // height={width / 2}
                 autoPlay={true}
                 data={[...new Array(6).keys()]}
                 scrollAnimationDuration={2000}
+                // mode="parallax"
+                // modeConfig={{
+                //     parallaxScrollingScale: 0.9,
+                //     parallaxScrollingOffset: 50,
+                //     parallaxAdjacentItemScale: 0.8,
+                // }}
                 // onSnapToItem={(index) => console.log('current index:', index)}
                 renderItem={({ index }) => (
                     <View

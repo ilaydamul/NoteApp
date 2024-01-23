@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <ScrollView>
-      <View style={{ height: "10" }}>
+      <View style={{ height: "100" }}>
         <MainSlider />
       </View>
       <View style={{ ...globalStyles.container }}>

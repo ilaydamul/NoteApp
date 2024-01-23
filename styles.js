@@ -10,8 +10,13 @@ export const globalStyles = StyleSheet.create({
         paddingHorizontal: 12,
         paddingTop: 16
     },
-    errorTxt:{
-        color:"red",
-        marginBottom:10
+    errorTxt: {
+        color: "red",
+        marginBottom: 10
+    }, 
+    itemsCenter: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
     }
 })
