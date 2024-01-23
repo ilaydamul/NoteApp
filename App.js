@@ -1,22 +1,19 @@
-import { DarkTheme, NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NotesContextProvider from './store/notes-context';
+import AuthContextProvider, { AuthContext } from './store/auth-context';
+import { useContext } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 // SCREENS
 import Home from './screens/Home';
 import Login from './screens/auth/Login';
 import Register from './screens/auth/Register';
 import Profile from './screens/Profile';
-import Animation from './screens/Animation';
-import AuthContextProvider, { AuthContext } from './store/auth-context';
-import { useContext } from 'react';
-import { Pressable, Text } from 'react-native';
-import Button from './components/ButtonStyle';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import Notes from './screens/Notes';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,15 +33,13 @@ function HomeNav() {
           iconName = focused ? 'ios-list' : 'ios-list-outline';
         }
 
-        // You can return any component that you like here!
         return <Ionicons name={iconName} size={size} color={color} />;
       },
       tabBarActiveTintColor: '#00ADB5',
       tabBarInactiveTintColor: '#393E46',
-      headerShown:false
+      headerShown: false
     })}>
 
-      <Tab.Screen name="Animation" component={Animation} options={{ title: "Animasyon" }} />
       <Tab.Screen name="Home" component={Home} options={{ title: "Anasayfa" }} />
       <Tab.Screen name="Notes" component={Notes} options={{ title: "Notlarım" }} />
       <Tab.Screen name="Profile" component={Profile} options={{ title: "Profil" }} />
@@ -71,7 +66,6 @@ function AuthNav() {
 
 function Root() {
   const authCtx = useContext(AuthContext);
-  // var a = true;
   return authCtx.isAuthenticated ? <AuthNav /> : <HomeNav />
 }
 
