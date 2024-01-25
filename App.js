@@ -2,7 +2,7 @@ import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-naviga
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NotesContextProvider from './store/notes-context';
-import AuthContextProvider, { AuthContext } from './store/auth-context';
+import AuthContextProvider, { AuthContext } from './store/auth-context.tsx';
 import { useContext } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -54,8 +54,7 @@ function HomeNav() {
 
 function NotesStackScreen({ route }) {
   return (
-    <NotesStack.Navigator
-      screenOptions={{ tabBarVisible: false }}>
+    <NotesStack.Navigator screenOptions={{ tabBarVisible: false }}>
 
       <NotesStack.Screen name="Notes" component={Notes} options={{ headerShown: false }} />
       <NotesStack.Screen name="AddNote" component={AddNote} options={{ title: 'Not Ekle' }} />

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import AuthContent from '../../components/auth/AuthContent';
-import { AuthContext } from '../../store/auth-context';
+import { AuthContext } from '../../store/auth-context.tsx';
 import { signin } from '../../util/firebase';
 
 
@@ -10,11 +10,12 @@ export default function Login() {
   function loginHandler(datas) {
     const email = datas.email;
     const password = datas.password;
-
+    var errTxt = "";
+    
     signin(email, password).then(() => {
       authCtx.authenticate(true);
     }).catch((error) => {
-      var errTxt;
+
       if (error.code === "auth/invalid-credential" || error.code === "auth/invalid-email") {
         errTxt = "E-mail/şifreniz yanlış. Tekrar deneyin.";
       } else {

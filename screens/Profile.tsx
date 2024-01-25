@@ -3,7 +3,7 @@ import { globalStyles } from '../styles';
 import Title from '../components/Title';
 import ButtonStyle from '../components/ButtonStyle';
 import { useContext } from 'react';
-import { AuthContext } from '../store/auth-context';
+import { AuthContext } from '../store/auth-context.tsx';
 import { logout } from '../util/firebase';
 
 export default function Profile() {

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import ValidInput from "./ValidInput";
 import { useContext, useEffect } from "react";
-import { AuthContext } from "../../store/auth-context";
+import { AuthContext } from "../../store/auth-context.tsx";
 import { globalStyles } from "../../styles";
 import ButtonStyle from "../ButtonStyle";
 
@@ -43,7 +43,7 @@ export default function AuthForm({ isLogin, onSubmit }) {
     }
 
     useEffect(() => {
-        authCtx.errorHandler("");
+        authCtx.errorHandler();
     }, [])
 
     return (

@@ -4,7 +4,7 @@ import Input from '../Input';
 import { Controller } from 'react-hook-form';
 import { globalStyles } from '../../styles';
 
-export default function ValidInput({ inputName, placeholder, control, errors, label }) {
+export default function ValidInput({ inputName, placeholder = "", control, errors, label }) {
     return (
         <>
             <Controller
